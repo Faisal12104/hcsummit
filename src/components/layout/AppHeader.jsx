@@ -1,38 +1,48 @@
-.header{
-    display: flex;
-    justify-content: space-between;
-    width: 100vw;    
-    height: 5rem;
-    background-color: #6C4E31;
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
-}
+import React, { useState } from 'react';
+import logo from '@/assets/logo_ppsdmmigas.png'; // Make sure this path is correct
+import './AppHeader.css'; // We'll extract the styles to a separate file
 
-.logo{
+const AppHeader = ({ onOpenLogin }) => {
+  const [isOpen, setIsOpen] = useState(false);
 
-    width: 8rem;
-    height: 8rem;
-    padding-left: 1rem;
-}
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen);
+  };
 
-.header-menu{
-    list-style: none;
-    display: flex;
-    gap: 2rem;
-    color: black;
-    align-items: center;
-    padding-right: 2rem;
-    font-size: 18px;
-    font-weight: 600;
+  const openLogin = (role) => {
+    onOpenLogin(role); // Call the prop function passed from parent
+    setIsOpen(false); // Close the dropdown
+  };
 
-}
+  return (
+    <header className="app-header">
+      <div className="header-content">
+        <img src={logo} alt="Logo PPSDM MIGAS" className="logo" />
+        <div className="navigation">
+          <nav>
+            <ul>
+              <li>HOME</li>
+              <li>ABOUT US</li>
+              <li>PRODUCT</li>
+              <li>CONSULTATION</li>
+            </ul>
+          </nav>
+        </div>
+        <div className="login-dropdown">
+          <button className="login-button" onClick={toggleDropdown}>
+            LOGIN <span className="arrow">▼</span>
+          </button>
+          {isOpen && (
+            <ul className="dropdown-menu">
+              <li onClick={() => openLogin('Superadmin')}>SUPERADMIN</li>
+              <li onClick={() => openLogin('Admin Sektor')}>ADMIN SEKTOR</li>
+              <li onClick={() => openLogin('Admin Eksternal')}>ADMIN EKSTERNAL</li>
+            </ul>
+          )}
+        </div>
+      </div>
+    </header>
+  );
+};
 
-.LogIn, .home-btn{
-    color: inherit; /* supaya warnanya ikut warna parent (li atau header) */
-    text-decoration: none; /* hilangin garis bawah */
-}
-
-.header-menu>li:hover{
-    cursor: pointer;
-    color: #F7AD45;
-}
+export default AppHeader;
