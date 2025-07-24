@@ -26,7 +26,8 @@ const LoginBox = ({ role, onClose }) => {
           <span className="toggle-password" onClick={togglePassword}>👁</span>
         </div>
         <p className="forgot">
-          Forgot your password? <a href="#">Click here</a>
+          Forgot your password?{" "}
+          <button type="button" className="link-button">Click here</button>
         </p>
         <button className="login-button">Login</button>
         <button className="close-button" onClick={onClose}>X</button>

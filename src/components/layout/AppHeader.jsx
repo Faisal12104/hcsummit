@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import logo from '@/assets/logo_ppsdmmigas.png'; // Make sure this path is correct
+import logo from '../../assets/logo_ppsdmmigas.png';
 import './AppHeader.css'; // We'll extract the styles to a separate file
 
 const AppHeader = ({ onOpenLogin }) => {
